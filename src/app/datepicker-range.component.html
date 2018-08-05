@@ -1,0 +1,17 @@
+<ngb-datepicker #dp ngModel (ngModelChange)="onDateChange($event)" [displayMonths]="2" [markDisabled]="isDisabled" [dayTemplate]="t">
+  <ng-template #t let-date="date" let-focused="focused" let-disabled="disabled" let-currentMonth="currentMonth">
+    <span class="custom-day"
+          [class.focused]="focused"
+          [class.range]="isFrom(date) || isTo(date) || isInside(date) || isHovered(date)"
+          [class.faded]="isHovered(date) || isInside(date)"
+          [class.text-muted]="disabled"
+          [class.isBooked]="isBooked(date)"
+          (mouseenter)="hoveredDate = date"
+          (mouseleave)="hoveredDate = null">
+      {{ date.day }}
+    </span>
+  </ng-template>
+</ngb-datepicker>
+<hr>
+<pre>From: {{ fromDate | json }} </pre>
+<pre>To: {{ toDate | json }} </pre>

@@ -1,0 +1,141 @@
+<div class="modifybooking-content">  
+    <div>
+        <select (change)="changeClient($event.target.value)">    
+            <option *ngFor="let b of bookings.bookings" [value]="b.id" >{{b.name}} ({{ b.arrival  | date: 'dd/MM/yyyy' }} - {{ b.departure  | date: 'dd/MM/yyyy' }})</option>
+         </select>    
+    </div>
+
+   <div *ngIf="message.error === 0">{{ message.message }}<button value="voir"></button></div>
+
+   <div *ngIf="(client && client.id > 0)">
+        <br>
+        <div>
+            <label>nom</label>
+            <input type="text" [(ngModel)]="changedClient.name"/>
+        </div>
+
+        <div>
+            <label>adresse</label>
+            <input type="text" [(ngModel)]="changedClient.address"/>
+        </div>
+
+        <div>
+            <label>ville</label>
+            <input type="text" [(ngModel)]="changedClient.city"/>
+        </div>
+        
+        <div>
+            <label>email</label>
+            <input type="text" [(ngModel)]="changedClient.email"/>
+        </div>
+
+        <div>
+            <label>téléphone</label>
+            <input type="text" [(ngModel)]="changedClient.tel"/>
+        </div>
+
+        <div>
+            <label>nuits</label>
+            <input type="number" [(ngModel)]="changedClient.nights"/>
+        </div>
+
+        <div>
+            <label>prix séjour</label>
+            <input type="text" [(ngModel)]="changedClient.price"/>
+        </div>
+
+        <div>
+            <label>nombre de repas adulte</label>
+            <input type="number" [(ngModel)]="changedClient.dinner" />
+        </div> 
+        
+        <div>
+            <label>prix repas adulte</label>
+            <input type="number" [(ngModel)]="changedClient.dinner_price" />
+        </div>
+        
+        <div>
+            <label>nombre de repas enfant</label>
+            <input type="number" [(ngModel)]="changedClient.dinner_child" />
+        </div>
+
+       <div>
+            <label>prix repas enfant</label>
+            <input type="number" [(ngModel)]="changedClient.dinner_child_price" />
+        </div>
+
+        <div>
+            <label>petit déjeuner</label>
+            <select [(ngModel)]="changedClient.breakfast">
+                <option value="0">non</option>
+                <option value="1">oui</option>
+            </select>
+        </div>
+
+        <div>
+            <label>prix petit déjeuner</label>
+            <input type="number" [(ngModel)]="changedClient.price_breakfast" />
+        </div>
+
+        <div>
+            <label>nombre de petit déjeuners</label>
+            <input type="number" [(ngModel)]="changedClient.no_breakfast" />
+        </div>
+
+        <div>
+            <label>payement</label>
+            <input type="text" [(ngModel)]="changedClient.payment"/>
+            <!--select [(ngModel)]="changedClient.payment">
+                <option value="no">non</option>
+                <option value="cheque">chèque</option>
+                <option value="especes">espèces</option>
+                <option value="cheque et especes">chèque et espèces</option>
+                <option value="virement bancaire">virement bancaire</option>
+            </select-->
+        </div>
+
+        <div>
+            <label>booking.com</label>
+            <select [(ngModel)]="changedClient.booking">
+                <option value="0">non</option>
+                <option value="1">oui</option>
+            </select>
+        </div>
+
+        <div>
+            <label>no. facture</label>
+            <input type="number" [(ngModel)]="changedClient.receipt_nr" />
+        </div>
+
+        <div class="row"> 
+            <div class="col-xs-12 col-sm-6">
+                <b>Chambre Rocamadour</b>
+                <div>
+                    <label>prix par nuit</label>
+                    <input type="number" [(ngModel)]="changedClient.room1_price"/>
+                </div>
+                <div>
+                    <label>lits</label>
+                    <input type="text" [(ngModel)]="changedClient.room1_disposition"/>
+                </div>
+            </div>
+
+            <div class="col-xs-12 col-sm-6">
+                <b>Chambre Saint Cirq Lapopie</b>
+                <div>
+                    <label>prix par nuit</label>
+                    <input type="number" [(ngModel)]="changedClient.room2_price"/>
+                </div>
+                <div>
+                    <label>lits</label>
+                    <input type="text" [(ngModel)]="changedClient.room2_disposition"/>
+                </div>
+            </div>
+        </div>
+        <br> 
+        <div class="text-center">
+            <input type="button" class="btn" value="confirmer" (click)="updateClient()"/>   
+        </div>
+        <br>
+    </div>  
+</div>

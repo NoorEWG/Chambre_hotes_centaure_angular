@@ -1,0 +1,24 @@
+.navbar {
+    max-width: 980px;
+    margin: auto;
+    background-color: #902A28;
+    color: darkgrey;
+}
+
+.navbar-brand {
+    font-size: 1em;
+}
+
+.img-icon {
+    width: 30px;
+    height: 30px;
+    background: #902A28;
+}
+
+a {
+  color: white;
+}
+a:hover {
+    text-decoration: none;
+    color: lightgrey;
+}

@@ -1,0 +1,17 @@
+.modifybooking-content {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 90px;
+    width: 100%;
+    max-width: 980px;
+    min-height: 500px;
+    font-size: .9em;
+}
+
+label {
+    width: 150px;
+}
+
+input {
+    min-width: 300px;
+}

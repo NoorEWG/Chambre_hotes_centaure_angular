@@ -1,0 +1,55 @@
+.custom-day {      
+      text-align: center;
+      padding: 0.185rem 0.25rem;
+      border-radius: 0.25rem;
+      display: inline-block;
+      width: 2rem;
+    }
+    
+.custom-day:hover, .custom-day.focused {
+    background-color: #e6e6e6;
+}
+
+.isBooked {
+    background-color: #902A28;
+    color: white;
+}
+
+.isClosed {
+    background-color: #435F84;
+    color: white;
+}
+
+.hidden {
+    display: none;
+}
+
+:root {
+   --red: #902A28 !important;
+   --blue:  #435F84 !important;
+}
+
+.btn-link {
+    color: #435F84 !important; 
+}
+
+.bg-primary {
+    color: #435F84 !important; 
+}
+
+.closed {
+    background-color:  #435F84; 
+    width: 25px;
+    height: 25px;
+    margin-right: 5px;
+    display: inline-block;
+}
+
+
+.booked {
+     background-color:#902A28; 
+    width: 25px;
+    height: 25px;
+    margin-right: 5px;
+    display: inline-block;
+}

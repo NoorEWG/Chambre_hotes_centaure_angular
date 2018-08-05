@@ -1,0 +1,99 @@
+@import "~bootstrap/dist/css/bootstrap.css";
+@import "~datatables.net-bs4/css/dataTables.bootstrap4.css";
+
+@media only screen and (max-width: 980px) {
+    .listbooking-content {
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 90px;
+        width: 100%;
+        min-height: 500px;
+        font-size: .9em;
+    }
+}
+
+@media only screen and (min-width: 981px) {
+    .listbooking-content {
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 90px;
+        width: 100%;
+        max-width: 980px;
+        min-height: 500px;
+        font-size: .9em;
+    }
+}
+
+.summary {
+    display:flex; 
+    justify-content: center;
+}
+
+.listbooking-datatable {
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+}
+
+.listbooking-datatable thead {
+        background-color: #902A28;
+        color: white;
+    }
+
+.list {
+    width: 100%;
+    max-width: 980px;  
+    overflow-x: auto; 
+    border-bottom: 1px solid gainsboro;
+}
+
+.sm {
+   width: 100px;
+   min-width: 100px;
+   max-width: 100px;
+}
+
+.lg {
+    width: 250px;
+    min-width: 250px;
+    max-width: 250px;
+    word-wrap: break-word;
+}
+
+.xl {
+    width: 500px;
+}
+
+.top {
+    vertical-align: top;
+}
+
+.line {
+    height: 10px;
+}
+
+@media only screen and (min-width: 981px) {
+    .info {
+        display: inline-block;
+        width: 400px;
+        margin-left: 200px;
+    }
+}
+
+
+
+@media only screen and (max-width: 980px) {
+    .info {
+        display: inline-block;
+        width: 400px;
+    }
+}
+.info-number {
+    width: 60px;
+    text-align: right;
+    display: inline-block;
+}
+
+.info-number-line {
+    border-top: 1px solid black;
+}

@@ -1,0 +1,22 @@
+<div class="sites-touristiques-component">
+    <br>
+    <br>
+    <map sites="true" lat="44.643496514542555" lon="1.588009373016348"></map>
+    <br>
+    <div class="row">
+        <div class="col-sm-6 col-md-3 text-center" *ngFor="let i of interestingPlaces">
+            <div class="site-item">
+                <div>
+                    <img title={{i.titletext1}} class="site-foto" alt={{i.titletext1}} src={{i.image2}}>
+                </div>
+                <br>
+                <div><b>{{i.titletext1}}</b>
+                    <p></p>
+                </div>
+                <div><button type="button" class="btn btn-lg btn-danger" (click)="goTo(i)">en savoir +</button>
+                </div>
+            </div>
+            <br>
+        </div>
+    </div>
+</div>

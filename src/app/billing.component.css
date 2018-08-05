@@ -1,0 +1,90 @@
+.billing-component {
+    max-width: 980px;
+    min-height: 600px;
+    margin-left:auto;
+    margin-right: auto;
+    margin-top: 70px;  
+}
+
+.print-receipt {
+    background-color: white;
+    padding: 20px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid gainsboro; 
+}
+
+.title {
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+.info {
+    text-align: right;
+}
+
+.naw {
+    min-height: 150px;
+}
+
+.naw-wrapper {
+    min-height: 150px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.telecharger {
+    text-align: right;
+}
+
+.hideButton {
+    display: none;
+}
+
+.date {
+    display: flex;
+    margin-bottom: 30px;
+}
+
+.date div:first-child {
+    width: 200px;
+}
+
+.detail {
+    display: flex;
+    justify-content: space-between;
+    min-height: 30px;
+    border-bottom: 1px solid gainsboro;
+    margin-top: 3px;
+}
+
+.detail div:nth-child(1) {
+    width: 300px;
+}
+
+
+.detail div:nth-child(2) {
+    width: 100px;
+}
+
+.detail div:nth-child(3) {
+    width: 200px;
+}
+
+
+.detail div:nth-child(4) {
+    width: 200px;
+}
+
+.total {
+    margin-top: 30px;
+}
+
+.payment {
+    margin-top: 30px;
+}

@@ -1,0 +1,25 @@
+.saint-cirq-component {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 90px;
+    width: 100%;
+    max-width: 1000px;
+    padding: 10px;
+}
+
+img {
+    width: 100%;
+    height: auto;
+}
+
+a {
+  color: white;
+}
+a:hover {
+    text-decoration: none;
+    color: grey;
+}
+
+.btn-danger {
+    background-color: #902A28;
+}

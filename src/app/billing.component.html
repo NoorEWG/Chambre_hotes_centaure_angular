@@ -1,0 +1,94 @@
+<div class="billing-component">
+    <div id="print-receipt" class="print-receipt">
+        <div class="header">
+            <div>
+                <img src="https://paardrijvakantie.com/images/ladevezebanner1.jpg" height="160px" width="auto">
+            </div>
+            <div class="info">
+                <div class="title">Chambre d'hôtes Centaure</div>
+                <div>Edwin et Erica de Graaf</div>
+                <div>La Devèze</div>
+                <div>46240 Coeur de Causse (Labastide-Murat)</div>
+                <div>06.31.96.50.57 / 06.61.17.01.44</div>
+                <div>IBAN: FR76 1950 6000 1159 0035 5512 372</div>
+                <div>Code BIC: AGRIFRPP895</div>
+            </div>
+        </div>
+        <div class="naw-wrapper">
+            <div class="naw">
+                <div>{{ bill.name }} <span *ngIf="bill.booking == 1">(Booking.com)</span></div>
+                <div>{{ bill.address}}</div>
+                <div>{{ bill.city}}</div>
+            <div class="telecharger">
+                <input type="button" class="btn" id="download-button" value="Télécharger la facture (PDF)" (click)="generatePdf()" />
+            </div>
+        <div>
+        <br>
+        <br>
+        <div class="date">
+            <div>date: {{ bill.departure |  date: 'dd-MM-yyyy'  }}</div>
+            <div>facture: {{ receiptNr }}</div>
+        </div>
+
+        <div class="detail"> 
+            <div><b>Description</b></div>
+            <div><b>nuits</b></div>
+            <div><b>P.U.</b></div>
+            <div class="text-right"><b>Total</b></div>
+        </div>
+
+        <div class="detail" *ngIf="bill.room1 == 1">     
+            <div>Chambre Rocamadour<br>{{ bill.no_pers_room1 }} personnes</div>
+            <div>{{ bill.nights }}</div>
+            <div>{{ bill.room1_price }}</div>
+            <div class="text-right">{{ bill.room1_totalprice }} &euro;</div>
+        </div>
+        
+        <div class="detail" *ngIf="bill.room2 == 1">     
+            <div>Chambre Saint Cirq Lapopie<br>{{ bill.no_pers_room2 }} personnes</div>
+            <div>{{ bill.nights }}</div>
+            <div>{{ bill.room2_price }}</div>
+            <div class="text-right">{{ bill.room2_totalprice }} &euro;</div>
+        </div>  
+
+        <div class="detail" *ngIf="bill.dinner > 0">     
+            <div>{{ bill.dinner }} repas</div>
+            <div></div>
+            <div>{{ bill.dinner_price }}</div>
+            <div class="text-right">{{ bill.dinner_price * bill.dinner }} &euro;</div>
+        </div>    
+
+        <div class="detail" *ngIf="bill.breakfast > 0">     
+            <div>{{ bill.no_breakfast }} petit déjeuner</div>
+            <div></div>
+            <div>{{ bill.price_breakfast }}</div>
+            <div class="text-right">{{ bill.price_breakfast * bill.no_breakfast }} &euro;</div>
+        </div>    
+        
+        <div class="detail" *ngIf="bill.reduction">     
+            <div>Reduction</div>
+            <div></div>
+            <div></div>
+            <div class="text-right">- {{ bill.reduction }} &euro;</div>
+        </div>    
+
+        <div class="detail total">     
+            <div><b>Total</b></div>
+            <div></div>
+            <div></div>
+            <div class="text-right"><b>{{ bill.price }} &euro;</b></div>
+        </div>   
+        
+        <div class="payment">
+            règlement: {{ bill.payment}}
+        </div>
+    </div>
+
+    <br>
+    <br>
+
+    
+    <br>
+    <br>
+</div>           
+

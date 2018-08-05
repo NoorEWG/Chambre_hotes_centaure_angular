@@ -1,0 +1,158 @@
+<div class="listbooking-content">
+    <table class="listbooking-datatable" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+        <thead>
+            <tr>
+                <td class="sm"><b>Facture</b></td>
+                <td class="lg"><b>Nom</b></td>
+                <td class="sm text-right"><b>Arrivée</b></td>
+                <td class="sm text-right"><b>Arrivée 2</b></td>
+                <td class="sm text-right"><b>Départ</b></td>
+                <td class="sm text-right"><b>Nuitée(s)</b></td>
+                <td class="lg text-right"><b><div>Chambre</div><div>Rocamadour</div></b></td>
+                <td class="lg text-right"><b>Chambre<br>Saint Cirq Lapopie</b></td>
+                <td class="sm text-right"><b>Prix</b></td>
+                <td class="sm text-right"><b>Booking.com</b></td>
+                <td class="sm text-right"><b>Payement</b></td>
+                <td class="sm text-right"><b>Acompte</b></td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let b of bookings.bookings" class="list">
+                <td class="sm">
+                    <span *ngIf="(b.arrival | date:'yyyy-MM-dd') < (today | date:'yyyy-MM-dd')">
+                        <button (click)="voirFacture(b.access_code)">Voir facture {{ b.receipt_nr }}</button>
+                    </span>
+                </td>    
+                <td class="lg">{{ b.name }}</td>
+                <td class="sm text-right">{{ b.arrival  | date: 'dd/MM/yyyy' }}</td>
+                <td class="sm text-right">{{ b.arrival }}</td>
+                <td class="sm text-right">{{ b.departure  | date: 'dd/MM/yyyy'}}</td>
+                <td class="sm text-right">{{ b.nights}}</td>
+                <td class="lg text-right">
+                    <span *ngIf="b.room1 == 1">
+                        <div>{{ b.room1_disposition }}</div>
+                        <div>personnes: {{ b.no_pers_room1 }}</div>
+                    </span>
+                </td>
+                <td class="lg text-right">
+                    <span *ngIf="b.room2 == 1">
+                        <div>{{ b.room2_disposition }}</div>
+                        <div>personnes: {{ b.no_pers_room2 }}</div>
+                    </span>
+                </td>
+                <td class="sm text-right">{{b.price}} &euro;</td>
+                <td class="sm text-right">
+                    <span *ngIf="b.booking == 0">Non</span>
+                    <span *ngIf="b.booking == 1">Oui</span>
+                </td>
+                <td class="sm text-right">{{b.payment}}</td>
+                <td class="sm text-right">{{b.acompte}}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <br>
+    <div class="summary">
+        <div class="lg text-right top">
+            <b>reçu en cheque
+                <br>reçu en espèces
+                <br>reçu virement etc 
+                <br>réservation en cours
+                <br>
+                <br>booking.com
+                <br>commission booking.com
+            </b>
+        </div>
+        <div class="sm text-right top">
+            <b>{{ cheque}} &euro;
+                <br>{{ cash}} &euro;
+                <br>{{ other}} &euro;
+                <br>{{ reserved }} &euro;
+                <br>
+                <br>{{ totalBooking }} &euro;
+                <br>{{ commissionBooking }} &euro;
+            </b>
+        </div>
+        <div class="sm top">
+            <b>({{ shareCheque | number : '1.2-2' }} %)
+                <br>({{ shareCash | number : '1.2-2' }} %)
+                <br>({{ shareOther | number : '1.2-2' }} %)
+                <br>({{ shareReserved | number : '1.2-2'}} %)
+                <br>
+                <br>({{ shareBooking | number : '1.2-2'}} %)
+                <br>
+            </b>
+        </div>
+    </div>    
+
+    <br>
+    <div #chartTarget></div>
+
+    <div class="summary">
+        <div class="info">Chambre Rocamadour {{ this.year }}:</div><div class="info-number"><b>{{ room1PricesYear1 }} &euro;</b></div>
+    </div>
+    <div class="summary">
+        <div class="info">Chambre Saint Cirq la Popie {{ this.year }}:</div><span class="info-number"><b>{{ room2PricesYear1 }} &euro;</b></span>
+    </div>
+     <div class="summary">
+        <div class="info">Table d'hôtes {{ this.year }}:</div><span class="info-number"><b>{{ dinnersYear1 }} &euro;</b></span>
+    </div>
+     <div class="summary">
+        <div class="info">Remises {{ this.year }}:</div><span class="info-number"><b>- {{ remise1 }} &euro;</b></span>
+    </div>
+     <div class="summary">
+        <div class="info">Total {{ this.year }}:</div><span class="info-number info-number-line"><b>{{ totalPricesYear1 }} &euro;</b></span>
+    </div>
+    <br>
+     <div class="summary">
+        <div class="info">Prix moyenne par personne {{ this.year }}:</div><span class="info-number"><b>{{ moyenne1 | number: '1.2-2' }} &euro;</b></span>
+    </div>
+
+    <br>
+
+    <div class="summary">
+        <div class="info">Chambre Rocamadour {{ this.yearBefore }}:</div><span class="info-number"><b>{{ room1PricesYear2 }} &euro;</b></span>
+    </div>
+     <div class="summary">
+        <div class="info">Chambre Saint Cirq la Popie {{ this.yearBefore }}:</div><span class="info-number"><b>{{ room2PricesYear2 }} &euro;</b></span>
+    </div>
+     <div class="summary">
+        <div class="info">Table d'hôtes {{ this.yearBefore }}:</div><span class="info-number"><b>{{ dinnersYear2 }} &euro;</b></span>
+    </div>
+     <div class="summary">
+        <div class="info">Remises {{ this.yearBefore }}:</div><span class="info-number"><b>- {{ remise2 }} &euro;</b></span>
+    </div>
+     <div class="summary">
+        <div class="info">Total {{ this.yearBefore }}:</div><span class="info-number info-number-line"><b>{{ totalPricesYear2 }} &euro;</b></span>
+    </div>
+    <br>
+ <div class="summary">
+        <div class="info">Prix moyenne par personne {{ this.yearBefore }}:</div><span class="info-number"><b>{{ moyenne2 | number: '1.2-2' }} &euro;</b></span>
+    </div>
+
+    <br>
+    
+    <div #chartPersons></div>
+    
+    <div class="text-center">
+        <span>{{ this.year}}: <b>{{totalPersYear1}}</b> personnes</span>
+    </div>
+    
+    <div class="text-center">
+        <span>{{ this.yearBefore}}: <b>{{totalPersYear2}}</b> personnes</span>
+    </div>
+
+   <div #chartNights></div>
+   
+     <div class="text-center">
+        <span>{{ this.year}}: <b>{{totalNightsYear1}}</b> nuitées</span>
+    </div>
+    
+    <div class="text-center">
+        <span>{{ this.yearBefore}}: <b>{{totalNightsYear2}}</b> nuitées</span>
+    </div>
+
+</div>
+
+
+

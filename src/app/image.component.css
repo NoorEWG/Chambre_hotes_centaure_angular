@@ -1,0 +1,45 @@
+.img-wrapper {
+    width: 100%;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@media screen and (max-width: 1019px) {
+    .nav-img {
+        background-image: url('../assets/la-deveze-2.jpg');
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: 100% auto; 
+        background-position: top;  
+    }
+
+    .home-img {
+        width: 700px;
+        height: 460px;
+        background-image: url('../assets/la-deveze-2.jpg');
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-position: top;  
+    }
+}
+
+@media screen and (min-width: 1020px) {
+    .nav-img {
+        width: 1020px;
+        height: 350px;
+        background-image: url('../assets/ladevezebanner1.jpg');
+        background-repeat: no-repeat;
+        background-attachment: fixed; 
+        background-position: top;  
+    }
+
+    .home-img {
+        width: 1000px;
+        height: 350px;
+        background-image: url('../assets/ladevezebanner1.jpg');
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-position: top;  
+    }
+}

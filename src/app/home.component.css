@@ -1,0 +1,50 @@
+.home-container {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 90px;
+    width: 100%;
+    max-width: 1000px;
+}
+
+.home-image {
+   width: 100%;
+   max-width: 980px; 
+   margin-bottom: 30px;
+   margin-left: 10px;
+   margin-right: 10px;
+}
+
+.item {
+    margin: 10px;
+    background:	#DBBBA1; 
+    height: 450px;
+}
+
+.item img {
+    width: 100%;
+    height: auto;
+}
+
+.item-text {
+    height: 130px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+a {
+  color: white;
+}
+a:hover {
+    text-decoration: none;
+    color: grey;
+}
+
+.btn-danger {
+    background-color: #902A28;
+    border: 1px solid darkgrey;
+}
+
+.item button {
+    position: absolute;
+    bottom: 45px;
+}

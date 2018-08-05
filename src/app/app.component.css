@@ -1,0 +1,15 @@
+.content {
+    max-width: 1000px;
+}
+
+a {
+  color: white;
+}
+a:hover {
+    text-decoration: none;
+    color: grey;
+}
+
+.btn-danger {
+    background-color: #902A28;
+}

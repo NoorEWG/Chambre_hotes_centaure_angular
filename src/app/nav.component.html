@@ -1,0 +1,33 @@
+<div class="navbar-header-centaure">
+    <nav class="navbar navbar-inverse navbar-toggleable-md fixed-top bg-faded">
+        <button type="button" class="navbar-toggler navbar-toggler-right" (click)="changeCollapse()">
+            <span class="navbar-toggle-icon"><img class="img-icon" src="../assets/toggle-icon.png"/></span>
+        </button>
+        <a class="navbar-brand" routerLink="/chambre-hotes">Chambre d'hôtes Centaure</a>
+        <div class="collapse navbar-collapse" [ngbCollapse]="isCollapsed">			
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a routerLink="/chambre-hotes" routerLinkActive="active">Accueil</a>
+                </li>
+                <li>
+                    <a routerLink="/chambre-rocamadour" routerLinkActive="active">Chambre Rocamadour</a>
+                </li>
+                <li>
+                    <a routerLink="/chambre-saint-cirq-lapopie" routerLinkActive="active">Chambre Saint Cirq Lapopie</a>
+                </li>
+                <li>
+                    <a routerLink="/table-hotes" routerLinkActive="active">Table d'hôtes</a>
+                </li>
+                <li>
+                    <a routerLink="/reservation" routerLinkActive="active">Réservation en ligne</a>
+                </li>
+                <li>
+                    <a routerLink="/sites-touristiques" routerLinkActive="active">Sites touristiques</a>
+                </li>
+                <li>
+                    <a routerLink="/contact" routerLinkActive="active">Contact</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div>

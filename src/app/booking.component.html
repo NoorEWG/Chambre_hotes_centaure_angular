@@ -1,0 +1,182 @@
+<div class="booking-content">  
+  <div *ngIf="formValidated.error === 1">
+    <div class= "form-bg">    
+      <form class="form-horizontal" [formGroup]="bookingForm">
+          <fieldset>
+            <legend class="text-center"><b>Réservation en ligne</b></legend>
+          
+              <div class="row chambre">
+                <div class="col-sm-3 col-xs-12"><b>Chambre Rocamadour</b></div>
+                <div class="col-sm-3 col-xs-12">
+                  <div><img height="100px" width="auto" src="https://paardrijvakantie.com/images/kamer_rocamadour.jpg" /></div>
+                  <div><input type="checkbox" formControlName="roomRoca" [(ngModel)]="user.roomRoca.selected" (click)="checkAvailability()"></div>
+                </div>
+                <div class="col-sm-6 col-xs-12" *ngIf="user.roomRoca.selected">
+                  <span *ngFor="let r of roomRocaList" style="display: block;">
+                    <input type="radio" formControlName="selectedRoca" [(ngModel)]="user.roomRoca.selectedRoom" [value]="r">{{r.text}}
+                  </span> 
+                  <span *ngIf="user.roomRoca.selected && user.roomRoca.selectedRoom.pers > 0"><b>prix par nuit: {{user.roomRoca.selectedRoom.price }} €, {{user.roomRoca.selectedRoom.text}}</b></span>
+                </div>  
+              </div>
+
+              <div class="row chambre">
+                <div class="col-sm-3 col-xs-12"><b>Chambre Saint Cirq Lapopie</b></div>
+                <div class="col-sm-3 col-xs-12">
+                  <div><img height="100px" width="auto" src="https://paardrijvakantie.com/images/chambre_hotes_gourdon.jpg" /></div>
+                  <div><input type="checkbox" formControlName="roomCirq" [(ngModel)]="user.roomCirq.selected" (click)="checkAvailability()"></div>
+                </div>
+                <div class="col-sm-6 col-xs-12" *ngIf="user.roomCirq.selected">
+                  <span *ngFor="let r of roomCirqList" style="display: block;">
+                    <input type="radio" formControlName="selectedCirq" [(ngModel)]="user.roomCirq.selectedRoom" [value]="r">{{r.text}}
+                  </span> 
+                  <span *ngIf="user.roomCirq.selected && user.roomCirq.selectedRoom.pers > 0"><b>prix par nuit: {{user.roomCirq.selectedRoom.price }} €, {{user.roomCirq.selectedRoom.text}}</b></span>
+                </div>  
+              </div>
+              
+              <!--datepicker-range [isBookedRoca]="user.roomRoca.selected" [isBookedCirq]="user.roomCirq.selected"></datepicker-range-->
+              <div class="form-group">
+                <label class="col-sm-3 col-xs-12" for="inputArrival">Date d'arrivée</label>
+                <input type="date" formControlName="arrival" id="inputArrival" [(ngModel)]="user.arrival" (change)="checkAvailability()">
+              </div>
+              <!--div *ngIf="arrival.invalid && name.touched"
+                class="offset-sm-3 col-sm-9 col-xs-12 error-message">
+                <div *ngIf = "arrival.errors?.pattern">
+                  La date d'arrivée est erronée
+                </div>
+                <div *ngIf = "arrival.errors?.required">
+                  La date d'arrivée n'est pas renseigné
+                </div>
+              </div-->  
+
+              <div class="form-group">
+                <label class="col-sm-3 col-xs-12" for="inputDeparture">Date de départ</label>
+                <input type="date" formControlName = "departure" id="inputDeparture" [(ngModel)]="user.departure"  (change)="checkAvailability()">
+              </div>
+
+              <div class="offset-sm-3 col-sm-9 col-xs-12 error-message">
+                {{ this.message }}
+              </div>  
+
+              <div class="form-group" hidden>
+                <label class="col-sm-3 col-xs-12" for="available">Disponible</label>
+                <input type="checkbox" formControlName = "available" id="available" [(ngModel)]="available" [checked]="available">
+              </div>
+
+              <div class="form-group">
+                <label class="col-sm-3 col-xs-12" for="selectGender">Titre</label>
+                  <select formControlName = "gender" [(ngModel)]="user.gender">
+                    <option *ngFor="let g of genderList" [ngValue]="g">
+                      {{g}}
+                    </option>
+                  </select>
+              </div>
+              <div *ngIf="gender.invalid && name.touched"
+                class="offset-sm-3 col-sm-9 col-xs-12 error-message">
+                <div *ngIf = "gender.errors?.pattern">
+                  Veuillez sélectionnez 'gender'
+                </div>
+              </div>           
+
+              <div class="form-group">
+                <label class="col-sm-3 col-xs-12" for="inputName">Nom</label>
+                <input type="text" formControlName = "name" id="inputName"
+                  placeholder="Nom" [(ngModel)]="user.name">
+            
+                <div *ngIf="name.invalid && name.touched"
+                  class="offset-sm-3 col-sm-9 col-xs-12 error-message">
+                  <div *ngIf = "name.errors?.required">
+                      Merci de remplir le champ nom
+                  </div>
+                  <!--div *ngIf = "name.errors?.minLength">
+                      Minimum length
+                  </div-->
+                </div> 
+              </div> 
+
+              <div class="form-group">
+                <label class="col-sm-3 col-xs-12" for="inputFirstname">Prénom</label>
+                <input type="text" formControlName = "firstName" id="inputFirstname"
+                  placeholder="Prénom"  [(ngModel)]="user.firstName">
+              </div>
+
+              <div class="form-group">
+                <label class="col-sm-3 col-xs-12" for="tel" >Téléphone</label>
+                <input type="text" formControlName = "tel" id="tel"
+                  placeholder="Téléphone" [(ngModel)]="user.tel">
+              </div>
+              <div *ngIf="tel.invalid && tel.touched"
+              class="offset-sm-3 col-sm-9 col-xs-12 error-message">
+                <div *ngIf = "tel.errors?.required">
+                    Merci de remplir le champ téléphone
+                </div>
+                <div *ngIf = "tel.errors?.pattern">
+                    Le format n'est pas correct
+                    {{tel.errors?.pattern | json}}
+                </div>
+                <div *ngIf = "tel.errors?.minLength">
+                    Le numero est trop court
+                </div>
+              </div> 
+
+              <div class="form-group">
+                <label class="col-sm-3 col-xs-12" for="email" >Email</label>
+                <input type="text" formControlName = "email" id="email"
+                  placeholder="Email"  [(ngModel)]="user.email">
+              </div> 
+              <div *ngIf="email.invalid && email.touched"
+              class="offset-sm-3 col-sm-9 col-xs-12 error-message">
+                <div *ngIf = "email.errors?.required">
+                    Merci de remplir le champ email
+                </div>
+                <div *ngIf = "email.errors?.pattern">
+                    Le format n'est pas correct
+                </div>
+              </div>
+      
+              <div formGroupName = "address">
+                <div class="form-group">
+                  <label class="col-sm-3 col-xs-12" for="inputStreet" >Rue</label>
+                  <input type="text" formControlName = "street" id="inputStreet"
+                    placeholder="Rue" [(ngModel)]="user.address.street">
+                </div>
+                
+                <div class="form-group">
+                  <label class="col-sm-3 col-xs-12" for="inputZipcode" >Code postal</label>
+                  <input type="text" formControlName = "zipcode" id="inputZipcode"
+                    placeholder="Code postal"  [(ngModel)]="user.address.zipcode">
+                </div> 
+
+                <div class="form-group">
+                  <label class="col-sm-3 col-xs-12" for="inputCity" >Ville</label>
+                  <input type="text" formControlName = "city" id="inputCity"
+                    placeholder="Ville"  [(ngModel)]="user.address.city">
+                  <!--select id="selectVille" formControlName = "ville"></select-->
+                </div> 
+              </div>
+              
+              <div class="row">
+                <div class="col-sm-3 col-xs-12 text-right">Conditions de réservation</div>
+                <div class="col-sm-9 col-xs-12">
+                    <p>Une réservation est définitive après réception d'une chèque d'acompte de minimum 25% du montant total</p>
+                    <p>Vous pouvez arriver à partir de 16h30 et vous devriez liberer la chambre au plus tard à 10h30</p>
+                    <input type="checkbox" formControlName="terms" [(ngModel)]="user.terms"> Cochez pour accepter les conditions de réservation                  
+                </div>
+              </div>
+              <br>
+              <div class="text-center">
+                  <button type="reset" class="btn btn-default">Annuler</button>
+                  <button type="submit" class="btn btn-primary" (click)="validateForm()"  [disabled]="!bookingForm.valid">Confirmer</button>
+              </div>
+
+          </fieldset>
+      </form>
+    </div>
+  </div>
+  <div *ngIf="formValidated.error === 0" class="form-bg text-center">
+    <div>{{formValidated.message}}</div>
+  </div>  
+</div>
+<!--- Log the FormGroup values to see if the binding is working -->
+    <!--p>Form value {{ bookingForm.value | json }} </p>
+    <p>User value {{ user | json }} </p>
+    <p> Form status {{ bookingForm.status | json}} </p-->
